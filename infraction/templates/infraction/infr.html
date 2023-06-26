@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des infractions</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des infractions</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nature</th>
+                    <th>Résiliation</th>
+                    <th>Date d'inscription</th>
+                    <th>Amende</th>
+                    <th>Emprisonnement</th>
+                    <th>Id_exploitant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Infrac in Infracs %}
+                <tr>
+                    <td>{{ Infrac.Nature }}</td>
+                    <td>{{ Infrac.Resiliation }}</td>
+                    <td>{{ Infrac.Inscription_date }}</td>
+                    <td>{{ Infrac.Amende }}</td>
+                    <td>{{ Infrac.Emprisonement }}</td>
+                    <td>{{ Infrac.Id_exploitant }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

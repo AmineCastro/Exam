@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des exploitants</title>
+</head>
+<body>
+    <h1>Liste des exploitants</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom complet</th>
+                <th>CIN</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exploi in explois %}
+            <tr>
+
+                <td><a href="{% url 'form1'  id_exploitant=exploi.Id_exploitant %}">{{ exploi.Nom_complet }}</a> </td>
+                <td>{{ exploi.CIN }}</td>
+                <td>{{ exploi.Adresse }}</td>
+                <td>{{ exploi.Tele }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
