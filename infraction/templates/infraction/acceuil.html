@@ -1,30 +1,89 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des exploitants</title>
+ <title>Liste des exploitants</title>
+
+ <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .custom-button {
+        display: block;
+        justify-content: center;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: yellowgreen;
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+    }
+</style>
+ 
 </head>
+
+
 <body>
-    <h1>Liste des exploitants</h1>
+    <div class="container">
+         
+        <a href="{% url 'bienv' %}" class="custom-button">Menu</a>
+
+   
+  <div>
+
+  <div class="container">
+         
+        <a href="{% url 'exploi_create' %}" class="custom-button">Ajouter un exploitant</a>
+   
+  <div>
     <table>
         <thead>
             <tr>
+                <th>Id_exploitant</th>
                 <th>Nom complet</th>
                 <th>CIN</th>
                 <th>Adresse</th>
                 <th>Téléphone</th>
+                <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
             {% for exploi in explois %}
             <tr>
 
-                <td><a href="{% url 'form1'  id_exploitant=exploi.Id_exploitant %}">{{ exploi.Nom_complet }}</a> </td>
+                <td>{{ exploi.Id_exploitant }}</a> </td>
+                <td>{{ exploi.Nom_complet }}</td>
                 <td>{{ exploi.CIN }}</td>
                 <td>{{ exploi.Adresse }}</td>
                 <td>{{ exploi.Tele }}</td>
+                <td>
+                    <form action="{% url 'exploi_delete' id_exploitant=exploi.Id_exploitant %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-icon" title="Supprimer">
+                            <img src="{% static 'icons/delete.png' %}" alt="Supprimer">
+                        </button>
+                    </form>
+                
+                    <form action="{% url 'exploi_edit' id_exploitant=exploi.Id_exploitant %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-icon" title="Modifier">
+                            <img src="{% static 'icons/edit.png' %}" alt="Modifier">
+                        </button>
+                    </form>
+                </td>
+                
             </tr>
             {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+         </table>
+    </div>
+
 </body>
 </html>

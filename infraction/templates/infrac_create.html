@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter une infraction</title>
+</head>
+<body>
+    <h1>Ajouter une infraction</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">enregistrer</button>
+    </form>
+</body>
+</html>

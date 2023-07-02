@@ -5,15 +5,16 @@
     <style>
 
         body {
-            background-image: url('');
+        
             background-size: cover;
             background-position: center;
             font-family: Arial, sans-serif;
-          
-        }
-        
-        .container {
+            text-align: center;
             
+        }
+    
+        .container {
+            text-align: center;
             width: 400px;
             margin: 100px auto;
             padding: 20px;
@@ -33,6 +34,7 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 16px;
+            
         }
         
         .menu-button:hover {
@@ -43,10 +45,13 @@
 </head>
 
 <body>
+    <h1>Gestion des infractions pour l'exploitation forestière :</h1>
+
     <div class="container">
         <h1>Menu</h1>
         <a href="acceuil.html" class="menu-button"> Exploitants</a>
-        <a href= "{% url 'infr.html' %}" class="menu-button">Infractions</a>
+        <a href= "{% url 'infractions' %}" class="menu-button">Infractions</a>
+    
     </div>
 
 </body>

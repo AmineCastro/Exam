@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des infractions</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    
+        .custom-button {
+            display: block;
+            justify-content: center;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: yellowgreen;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="container">
+         
+        <a href="{% url 'bienv' %}" class="custom-button">Menu</a>
+
+  <div>
+
+    <div class="container">
+         
+        <a href="{% url 'infrac_create' %}" class="custom-button">Ajouter une infraction</a>
+   
+  <div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id_infraction</th>
+                <th>Nature</th>
+                <th>Résiliation</th>
+                <th>Date d'inscription</th>
+                <th>Amende</th>
+                <th>Emprisonnement</th>
+                <th>Id_exploitant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for infrac in Infracs %}
+            <tr>
+                <td>{{ infrac.Id_infraction }}</td>
+                <td>{{ infrac.Nature }}</td>
+                <td>{{ infrac.Resiliation }}</td>
+                <td>{{ infrac.Inscription_date }}</td>
+                <td>{{ infrac.Amende }}</td>
+                <td>{{ infrac.Emprisonement }}</td>
+                <td>{{ infrac.Id_exploitant }}</td>
+                <td>
+                    
+                    <form action="{% url 'infrac_delete' id_infraction=infrac.Id_infraction %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-icon" title="Supprimer">
+                            <img src="{% static 'icons/delete.png' %}" alt="Supprimer">
+                        </button>
+                    </form>
+                    <form action="{% url 'infrac_edit' id_infraction=infrac.Id_infraction %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-icon" title="Modifier">
+                            <img src="{% static 'icons/edit.png' %}" alt="Modifier">
+                        </button>
+                    </form>
+                    
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
